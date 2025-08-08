@@ -11,10 +11,9 @@
       <!-- Activity 6: Render a list containing author names and their birth years. Hint: Make use of the v-for directive to iterate through the array of authors. -->
       <!-- TODO: CODE TO RENDER LIST OF AUTHORS HERE -->
       <ul>
-        <li  v-for="author in authors" 
-          :key="author.id"
-          :class="{ highlight: author.name === 'George Orwell' }"
-          :style="author.name === 'George Orwell' ? highlightStyle : {}"
+        <li v-for="author in authors" :key="author.id"
+        :class="{ highlight: author.name === 'George Orwell' }"
+        :style="author.name === 'George Orwell' ? highlightStyle : {}"
         >
         {{ author.name }} ({{ author.birthYear }})
         </li>
@@ -24,8 +23,11 @@
       <!-- Activity 7: Render a list containing authors born after 1850. Hint: Make use of the v-for directive to iterate through the array of authors that you have filtered out. -->
       <p>Authors born after 1850:</p>
       <!-- TODO: CODE TO RENDER LIST OF AUTHORS HERE -->
-       <ul>
-        <li v-for="author in modernAuthors" :key="author.id"> 
+      <ul>
+        <li v-for="author in modernAuthors" :key="author.id"
+        :class="{ highlight: author.name === 'George Orwell' }"
+        :style="author.name === 'George Orwell' ? highlightStyle : {}"
+        > 
         {{ author.name }} ({{ author.birthYear }})
         </li>
       </ul>
@@ -94,12 +96,7 @@
         <p v-if="showMessage" class="message success">
           ✨ You're a Vue superstar! ✨
         </p>
-        <p v-else class="message">
-          Click the button to see a message.
-        </p>
-      <button @click="showMessage = !showMessage">Toggle Message</button>
-      <p class="message success">✨ You're a Vue superstar! ✨</p>
-      <p>Click the button to see a message.</p>
+        <p>Click the button to see a message.</p>
     </section>
 
     <section class="lab-section">
@@ -125,16 +122,16 @@ const highlightStyle = {
 }
 
 // Activity 2: Get authors born after 1850
-const modernAuthors = computed(() => {
+const modernAuthors = computed(() => 
   // TODO: CODE TO FILTER ARRAY OF AUTHORS HERE
   authors.filter((author) => author.birthYear > 1850)
-})
+)
 
 // Activity 3: Get all famous works
-const allFamousWorks = computed(() => {
+const allFamousWorks = computed(() => 
   // TODO: CODE TO GET ALL FAMOUS WORKS HERE
   authors.flatMap((author) => author.famousWorks.map((work) => work.title))
-})
+)
 
 // Activity 4: Find author by name
 const orwell = computed(() => {
@@ -172,6 +169,7 @@ h1 {
   margin-bottom: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #333
 }
 
 .message {
