@@ -11,7 +11,11 @@
       <!-- Activity 6: Render a list containing author names and their birth years. Hint: Make use of the v-for directive to iterate through the array of authors. -->
       <!-- TODO: CODE TO RENDER LIST OF AUTHORS HERE -->
       <ul>
-        <li v-for="author in authors" :key="author.id">
+        <li  v-for="author in authors" 
+          :key="author.id"
+          :class="{ highlight: author.name === 'George Orwell' }"
+          :style="author.name === 'George Orwell' ? highlightStyle : {}"
+        >
         {{ author.name }} ({{ author.birthYear }})
         </li>
       </ul>
@@ -31,6 +35,11 @@
       <ul>
         <!-- Activity 8: Render a list of all famous works. Hint: Use the v-for directive to iterate through the array of authors that you have filtered out. -->
         <!-- TODO: CODE TO RENDER LIST OF FAMOUS WORKS HERE -->
+         <ul>
+          <li v-for="work in allFamousWorks" :key="work">
+          {{ work }}
+          </li>
+        </ul>
       </ul>
 
       <h3>Finding in Arrays</h3>
@@ -81,6 +90,13 @@
       <p>Toggle visibility based on a condition.</p>
       <!-- Activity 13: Toggle the message visibility when the button is clicked. -->
       <!-- TODO: CODE TO TOGGLE MESSAGE VISIBILITY HERE. Hint: Use the v-if directive. -->
+       <button @click="showMessage = !showMessage">Toggle Message</button>
+        <p v-if="showMessage" class="message success">
+          ✨ You're a Vue superstar! ✨
+        </p>
+        <p v-else class="message">
+          Click the button to see a message.
+        </p>
       <button @click="showMessage = !showMessage">Toggle Message</button>
       <p class="message success">✨ You're a Vue superstar! ✨</p>
       <p>Click the button to see a message.</p>
@@ -89,7 +105,7 @@
     <section class="lab-section">
       <h2>Attribute, Class and Style Binding with <code>v-bind</code></h2>
       <p>Highlighting Specific Authors:</p>
-
+      
     </section>
   </div>
 </template>
@@ -99,9 +115,14 @@ import { ref, computed } from "vue"
 
 // Activity 1: Import JSON files (authors.json and bookstores.json)
 // TODO: CODE TO IMPORT JSON FILES HERE
-import authors from "..assets/json/authors.json"
-import bookstores from "..assets/json/authors/json"
+import authors from "../assets/json/authors.json"
+import bookstores from "../assets/json/bookstores.json"
 const showMessage = ref(false)
+
+const highlightStyle = {
+  fontWeight: 'bold',
+  border: '2px solid #42b883'
+}
 
 // Activity 2: Get authors born after 1850
 const modernAuthors = computed(() => {
