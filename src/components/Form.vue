@@ -63,12 +63,23 @@
         </div>
     </div>
 </div>
+<DataTable :value="submittedCards" tableStyle="min-width: 50rem">
+    <Column field="username" header="Username"></Column>
+    <Column field="password" header="Password"></Column>
+    <Column field="isAustralian" header="Resdent"></Column>
+    <Column field="gender" header="Gender"></Column>
+    <Column field="reason" header="Reason"></Column>
+</DataTable>
 </template>
 
 
 <script setup>
 // Our logic will go here
 import { ref } from 'vue';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import ColumnGroup from 'primevue/columngroup';   // optional
+import Row from 'primevue/row';  
 
 const formData = ref({
     username: '',
